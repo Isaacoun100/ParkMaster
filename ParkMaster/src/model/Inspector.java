@@ -1,6 +1,5 @@
-package model.misc;
+package model;
 
-import model.User;
 import java.time.LocalDate;
 
 public class Inspector extends User {
