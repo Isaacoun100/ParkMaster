@@ -20,33 +20,27 @@ public class AddAdmin extends JFrame {
     private JButton returnToPreviousMenuButton;
 
     public AddAdmin() {
+
+        JFrame frame = new JFrame("Add Admin");
+        frame.setContentPane(addAdminPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(750,450);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
         returnToPreviousMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new AdminDashboard();
             }
         });
         createAdmin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(addAdminPanel, "Admin added successfully");
             }
         });
     }
-
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
-    }
-
-    public void initialize() {
-        JFrame frame = new JFrame("Add Admin");
-        frame.setContentPane(new AddAdmin().addAdminPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(750,450);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-
 
 }

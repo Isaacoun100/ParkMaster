@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InspectorDashboard extends JFrame {
     private JPanel inspectorDashboardPanel;
@@ -10,17 +10,27 @@ public class InspectorDashboard extends JFrame {
     private JButton checkLicenseButton;
     private JButton signOutButton;
 
-    public void initialize() {
+    public InspectorDashboard() {
+
         JFrame frame = new JFrame("Inspector Dashboard");
-        frame.setContentPane(new InspectorDashboard().inspectorDashboardPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setContentPane(inspectorDashboardPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400,400);
         frame.setResizable(false);
         frame.setVisible(true);
-    }
 
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        checkLicenseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(inspectorDashboardPanel, "License Checked!");
+            }
+        });
+        signOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new HomeInspector();
+            }
+        });
     }
 }

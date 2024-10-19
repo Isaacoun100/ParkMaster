@@ -1,10 +1,8 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class AddUser extends JFrame {
     private JPanel addUserPanel;
@@ -25,32 +23,27 @@ public class AddUser extends JFrame {
     private JPasswordField pinTextField;
 
     public AddUser() {
+
+        JFrame frame = new JFrame("Add User");
+        frame.setContentPane(addUserPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800,600);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
         createInspectorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(addUserPanel, "Thanks for signing up!");
             }
         });
         returnToPreviousMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new HomeUser();
             }
         });
-    }
-
-    public static void initialize() {
-        JFrame frame = new JFrame("Add User");
-        frame.setContentPane(new AddUser().addUserPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(800,600);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
 
 }

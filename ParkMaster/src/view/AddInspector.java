@@ -20,27 +20,27 @@ public class AddInspector extends JFrame {
     private JPanel addInspectorPanel;
 
     public AddInspector() {
+
+        JFrame frame = new JFrame("Add Inspector");
+        frame.setContentPane(addInspectorPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(900,450);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
         createInspectorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JOptionPane.showMessageDialog(AddInspector.this, "Inspector added successfully");
             }
         });
         returnToPreviousMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new AdminDashboard();
             }
         });
-    }
-
-    public void initialize() {
-        JFrame frame = new JFrame("Add Inspector");
-        frame.setContentPane(new AddInspector().addInspectorPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(900,450);
-        frame.setResizable(false);
-        frame.setVisible(true);
     }
 
 }

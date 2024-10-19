@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UserDashboard extends JFrame {
     private JPanel userDashboardForm;
@@ -13,18 +13,29 @@ public class UserDashboard extends JFrame {
     private JButton historyButton;
     private JButton signOutButton;
 
-    public void initialize() {
+    public UserDashboard() {
+
         JFrame frame = new JFrame("Add Admin");
-        frame.setContentPane(new UserDashboard().userDashboardForm);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setContentPane(userDashboardForm);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900,450);
         frame.setResizable(false);
         frame.setVisible(true);
-    }
 
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        signOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new HomeUser();
+            }
+        });
+        scheduleParkingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ScheduleParking();
+            }
+        });
     }
 
 }

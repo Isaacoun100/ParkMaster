@@ -11,29 +11,30 @@ public class HomeUser extends JFrame {
     private JButton returnToHomeButton;
     private JPanel homeUserPanel;
 
-    public void initialize() {
+    public HomeUser() {
+
         JFrame frame = new JFrame("Login User");
-        frame.setContentPane(new HomeUser().homeUserPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setContentPane(homeUserPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,400);
         frame.setResizable(false);
         frame.setVisible(true);
 
-    }
-
-    public HomeUser() {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.setVisible(false);
+                new UserDashboard();
             }
         });
         returnToHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.setVisible(false);
+                new HomePage();
             }
         });
 
     }
+
 }

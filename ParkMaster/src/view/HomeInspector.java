@@ -14,32 +14,28 @@ public class HomeInspector extends JFrame {
     private JPanel homeInspectorPanel;
 
     public HomeInspector() {
+
+        JFrame frame = new JFrame("Login Inspector");
+        frame.setContentPane(homeInspectorPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600,400);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new InspectorDashboard();
             }
         });
         returnToHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new HomePage();
             }
         });
-    }
-
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
-    }
-
-    public void initialize() {
-        JFrame frame = new JFrame("Login Inspector");
-        frame.setContentPane(new HomeInspector().homeInspectorPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(600,400);
-        frame.setResizable(false);
-        frame.setVisible(true);
     }
 
 }

@@ -19,34 +19,44 @@ public class AdminDashboard extends JFrame {
     private JButton reportsButton;
     private JButton parkConfiguationButton;
 
+
     public AdminDashboard() {
-        signOutButton.addActionListener(new ActionListener() {
+
+        JFrame frame = new JFrame("Admin Dashboard");
+        frame.setContentPane(adminDashboardPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(900,600);
+        frame.setResizable(false);
+        frame.setVisible(true);
+
+        addANewAdminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new AddAdmin();
             }
         });
         addANewInspectorButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new AddInspector();
             }
         });
-        addANewAdminButton.addActionListener(new ActionListener() {
+        reportsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new Reports();
             }
         });
-    }
-
-    public void initialize() {
-        JFrame frame = new JFrame("Admin Dashboard");
-        frame.setContentPane(new AdminDashboard().adminDashboardPanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(900,600);
-        frame.setResizable(false);
-        frame.setVisible(true);
+        signOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new HomeAdmin();
+            }
+        });
     }
 
 }

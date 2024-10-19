@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Reports extends JFrame {
     private JComboBox comboBox1;
@@ -19,19 +19,22 @@ public class Reports extends JFrame {
     private JButton returnToDashboardButton1;
     private JPanel reportsForm;
 
-    public void initialize() {
+    public Reports() {
+
         JFrame frame = new JFrame("Reports");
-        frame.setContentPane(new Reports().reportsForm);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setContentPane(reportsForm);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,700);
         frame.setResizable(false);
         frame.setVisible(true);
 
-    }
-
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        returnToDashboardButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new AdminDashboard();
+            }
+        });
     }
 
 }

@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.*;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ScheduleParking extends JFrame {
     private JTextField parkingSpotTextField;
@@ -10,20 +10,30 @@ public class ScheduleParking extends JFrame {
     private JComboBox vehicleCombo;
     private JButton scheduleButton;
     private JButton returnButton;
-    private JPanel schedulingParkingForm;
+    private JPanel scheduleParkingPanel;
 
-    public void initialize() {
+    public ScheduleParking() {
+
         JFrame frame = new JFrame("Schedule Parking");
-        frame.setContentPane(new ScheduleParking().schedulingParkingForm);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setContentPane(scheduleParkingPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,400);
         frame.setResizable(false);
         frame.setVisible(true);
-    }
 
-    public void close(){
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+        scheduleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(scheduleParkingPanel, "Parking Scheduled Successfully");
+            }
+        });
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new UserDashboard();
+            }
+        });
     }
 
 }
