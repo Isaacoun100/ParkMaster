@@ -33,7 +33,7 @@ public class HomeInspector extends JFrame {
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Login Inspector");
         frame.setContentPane(new HomeInspector().homeInspectorPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

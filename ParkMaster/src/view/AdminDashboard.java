@@ -40,7 +40,7 @@ public class AdminDashboard extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Admin Dashboard");
         frame.setContentPane(new AdminDashboard().adminDashboardPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

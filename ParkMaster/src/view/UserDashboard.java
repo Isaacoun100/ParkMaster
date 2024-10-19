@@ -13,7 +13,7 @@ public class UserDashboard extends JFrame {
     private JButton historyButton;
     private JButton signOutButton;
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Add Admin");
         frame.setContentPane(new UserDashboard().userDashboardForm);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

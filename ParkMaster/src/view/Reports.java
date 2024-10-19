@@ -19,7 +19,7 @@ public class Reports extends JFrame {
     private JButton returnToDashboardButton1;
     private JPanel reportsForm;
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Reports");
         frame.setContentPane(new Reports().reportsForm);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

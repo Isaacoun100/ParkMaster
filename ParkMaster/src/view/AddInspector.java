@@ -34,7 +34,7 @@ public class AddInspector extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Add Inspector");
         frame.setContentPane(new AddInspector().addInspectorPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

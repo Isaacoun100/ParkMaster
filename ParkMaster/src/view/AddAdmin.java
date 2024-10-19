@@ -39,7 +39,7 @@ public class AddAdmin extends JFrame {
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Add Admin");
         frame.setContentPane(new AddAdmin().addAdminPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

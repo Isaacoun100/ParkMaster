@@ -11,7 +11,7 @@ public class HomeUser extends JFrame {
     private JButton returnToHomeButton;
     private JPanel homeUserPanel;
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Login User");
         frame.setContentPane(new HomeUser().homeUserPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

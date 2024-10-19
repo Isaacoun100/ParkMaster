@@ -12,7 +12,7 @@ public class ScheduleParking extends JFrame {
     private JButton returnButton;
     private JPanel schedulingParkingForm;
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Schedule Parking");
         frame.setContentPane(new ScheduleParking().schedulingParkingForm);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

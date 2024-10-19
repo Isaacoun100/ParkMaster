@@ -10,7 +10,7 @@ public class InspectorDashboard extends JFrame {
     private JButton checkLicenseButton;
     private JButton signOutButton;
 
-    public static void main(String[] args) {
+    public void initialize() {
         JFrame frame = new JFrame("Inspector Dashboard");
         frame.setContentPane(new InspectorDashboard().inspectorDashboardPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
