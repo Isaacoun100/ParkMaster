@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Laura",
+    "lastName": "Martinez",
+    "phoneNumber": "123-456-7890",
+    "email": "laura.martinez@example.com",
+    "billingAddress": "789 Maple St, Springfield, IL",
+    "id": "I001",
+    "PIN": 1234,
+    "hireDate": "2021-04-10",
+    "terminal": "Terminal A"
+  },
+  {
+    "name": "Carlos",
+    "lastName": "Gonzalez",
+    "phoneNumber": "234-567-8901",
+    "email": "carlos.gonzalez@example.com",
+    "billingAddress": "321 Elm St, Shelbyville, IL",
+    "id": "I002",
+    "PIN": 2345,
+    "hireDate": "2020-09-05",
+    "terminal": "Terminal B"
+  },
+  {
+    "name": "Sophia",
+    "lastName": "Hernandez",
+    "phoneNumber": "345-678-9012",
+    "email": "sophia.hernandez@example.com",
+    "billingAddress": "456 Oak St, Capital City, IL",
+    "id": "I003",
+    "PIN": 3456,
+    "hireDate": "2019-11-22",
+    "terminal": "Terminal C"
+  },
+  {
+    "name": "Miguel",
+    "lastName": "Ramirez",
+    "phoneNumber": "456-789-0123",
+    "email": "miguel.ramirez@example.com",
+    "billingAddress": "654 Pine St, Ogdenville, IL",
+    "id": "I004",
+    "PIN": 4567,
+    "hireDate": "2022-06-15",
+    "terminal": "Terminal D"
+  },
+  {
+    "name": "Isabella",
+    "lastName": "Lopez",
+    "phoneNumber": "567-890-1234",
+    "email": "isabella.lopez@example.com",
+    "billingAddress": "987 Cedar St, North Haverbrook, IL",
+    "id": "I005",
+    "PIN": 5678,
+    "hireDate": "2021-01-30",
+    "terminal": "Terminal E"
+  }
+]

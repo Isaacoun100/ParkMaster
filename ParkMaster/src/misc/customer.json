@@ -1,0 +1,127 @@
+[
+  {
+    "name": "John",
+    "lastName": "Doe",
+    "phoneNumber": "123-456-7890",
+    "email": "john.doe@example.com",
+    "billingAddress": "123 Main St, Springfield, IL",
+    "id": "C001",
+    "PIN": 1234,
+    "paymentMethod": {
+      "cardNumber": "4111111111111111",
+      "expiryDate": "12/25",
+      "cvv": "123"
+    },
+    "vehicles": [
+      {
+        "vehicleID": "V001",
+        "Brand": "Toyota",
+        "Model": "Corolla"
+      },
+      {
+        "vehicleID": "V002",
+        "Brand": "Honda",
+        "Model": "Civic"
+      }
+    ]
+  },
+  {
+    "name": "Jane",
+    "lastName": "Smith",
+    "phoneNumber": "987-654-3210",
+    "email": "jane.smith@example.com",
+    "billingAddress": "456 Elm St, Shelbyville, IL",
+    "id": "C002",
+    "PIN": 5678,
+    "paymentMethod": {
+      "cardNumber": "5500000000000004",
+      "expiryDate": "11/24",
+      "cvv": "456"
+    },
+    "vehicles": [
+      {
+        "vehicleID": "V003",
+        "Brand": "Ford",
+        "Model": "Focus"
+      }
+    ]
+  },
+  {
+    "name": "Alice",
+    "lastName": "Johnson",
+    "phoneNumber": "555-123-4567",
+    "email": "alice.johnson@example.com",
+    "billingAddress": "789 Oak St, Capital City, IL",
+    "id": "C003",
+    "PIN": 9012,
+    "paymentMethod": {
+      "cardNumber": "340000000000009",
+      "expiryDate": "01/26",
+      "cvv": "789"
+    },
+    "vehicles": [
+      {
+        "vehicleID": "V004",
+        "Brand": "Chevrolet",
+        "Model": "Malibu"
+      },
+      {
+        "vehicleID": "V005",
+        "Brand": "Nissan",
+        "Model": "Altima"
+      },
+      {
+        "vehicleID": "V006",
+        "Brand": "BMW",
+        "Model": "3 Series"
+      }
+    ]
+  },
+  {
+    "name": "Bob",
+    "lastName": "Williams",
+    "phoneNumber": "444-789-1234",
+    "email": "bob.williams@example.com",
+    "billingAddress": "101 Pine St, Ogdenville, IL",
+    "id": "C004",
+    "PIN": 3456,
+    "paymentMethod": {
+      "cardNumber": "6011000000000004",
+      "expiryDate": "03/27",
+      "cvv": "321"
+    },
+    "vehicles": [
+      {
+        "vehicleID": "V007",
+        "Brand": "Hyundai",
+        "Model": "Elantra"
+      }
+    ]
+  },
+  {
+    "name": "Charlie",
+    "lastName": "Brown",
+    "phoneNumber": "333-456-7890",
+    "email": "charlie.brown@example.com",
+    "billingAddress": "202 Maple St, North Haverbrook, IL",
+    "id": "C005",
+    "PIN": 7890,
+    "paymentMethod": {
+      "cardNumber": "30000000000004",
+      "expiryDate": "09/23",
+      "cvv": "654"
+    },
+    "vehicles": [
+      {
+        "vehicleID": "V008",
+        "Brand": "Volkswagen",
+        "Model": "Jetta"
+      },
+      {
+        "vehicleID": "V009",
+        "Brand": "Subaru",
+        "Model": "Impreza"
+      }
+    ]
+  }
+]
