@@ -1,4 +1,4 @@
-package model.misc;
+package model.other;
 
 public class Vehicle {
 
