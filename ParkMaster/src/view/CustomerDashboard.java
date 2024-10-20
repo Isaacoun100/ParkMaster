@@ -1,10 +1,11 @@
 package view;
 
 import javax.swing.*;
+import model.Customer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserDashboard extends JFrame {
+public class CustomerDashboard extends JFrame {
     private JPanel userDashboardForm;
     private JList parkingList;
     private JButton addTimeButton;
@@ -13,7 +14,7 @@ public class UserDashboard extends JFrame {
     private JButton historyButton;
     private JButton signOutButton;
 
-    public UserDashboard() {
+    public CustomerDashboard() {
 
         JFrame frame = new JFrame("Add Admin");
         frame.setContentPane(userDashboardForm);
@@ -26,7 +27,7 @@ public class UserDashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new HomeUser();
+                new HomeCustomer();
             }
         });
         scheduleParkingButton.addActionListener(new ActionListener() {

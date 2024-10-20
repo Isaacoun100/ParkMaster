@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddUser extends JFrame {
+public class AddCustomer extends JFrame {
     private JPanel addUserPanel;
     private JTextField nameFieldText;
     private JTextField lastNameFieldText;
@@ -22,7 +22,7 @@ public class AddUser extends JFrame {
     private JTextField modelTextField;
     private JPasswordField pinTextField;
 
-    public AddUser() {
+    public AddCustomer() {
 
         JFrame frame = new JFrame("Add User");
         frame.setContentPane(addUserPanel);
@@ -41,7 +41,7 @@ public class AddUser extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new HomeUser();
+                new HomeCustomer();
             }
         });
     }
