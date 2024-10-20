@@ -1,17 +1,21 @@
 package view;
 
+import controller.jsonParser;
+import model.Admin;
+import model.Inspector;
+import org.json.simple.parser.ParseException;
+
 import javax.swing.*;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class HomeInspector extends JFrame {
-    private JButton signInButton;
-    private JPasswordField emailFieldText;
-    private JPasswordField passwordFieldText;
+    private JButton logInButton;
+    private JPasswordField passwordTextField;
     private JButton returnToHomeButton;
     private JPanel homeInspectorPanel;
+    private JTextField emailTextField;
 
     public HomeInspector() {
 
@@ -22,11 +26,32 @@ public class HomeInspector extends JFrame {
         frame.setResizable(false);
         frame.setVisible(true);
 
-        signInButton.addActionListener(new ActionListener() {
+        logInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new InspectorDashboard();
+                try {
+                    Inspector inspector = jsonParser.loginInspector(
+                            passwordTextField.getText(),
+                            emailTextField.getText()
+                    );
+
+                    if(inspector != null){
+                        frame.setVisible(false);
+                        new InspectorDashboard();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(frame, "Please check your password or email");
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println("IOException");
+                    System.out.println(ex.getMessage());
+                    throw new RuntimeException(ex);
+                } catch (ParseException ex) {
+                    System.out.println("Cannot find file");
+                    System.out.println(ex.getMessage());
+                    throw new RuntimeException(ex);
+                }
             }
         });
         returnToHomeButton.addActionListener(new ActionListener() {

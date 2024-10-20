@@ -8,9 +8,9 @@ public class User {
     private String email;
     private String billingAddress;
     private String id;
-    private int PIN;
+    private String PIN;
 
-    public User(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, int PIN) {
+    public User(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -66,5 +66,13 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPIN() {
+        return PIN;
+    }
+
+    public void setPIN(String PIN) {
+        this.PIN = PIN;
     }
 }

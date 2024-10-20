@@ -6,7 +6,7 @@
     "email": "laura.martinez@example.com",
     "billingAddress": "789 Maple St, Springfield, IL",
     "id": "I001",
-    "PIN": 1234,
+    "PIN": "1234",
     "hireDate": "2021-04-10",
     "terminal": "Terminal A"
   },
@@ -17,7 +17,7 @@
     "email": "carlos.gonzalez@example.com",
     "billingAddress": "321 Elm St, Shelbyville, IL",
     "id": "I002",
-    "PIN": 2345,
+    "PIN": "2345",
     "hireDate": "2020-09-05",
     "terminal": "Terminal B"
   },
@@ -28,7 +28,7 @@
     "email": "sophia.hernandez@example.com",
     "billingAddress": "456 Oak St, Capital City, IL",
     "id": "I003",
-    "PIN": 3456,
+    "PIN": "3456",
     "hireDate": "2019-11-22",
     "terminal": "Terminal C"
   },
@@ -39,7 +39,7 @@
     "email": "miguel.ramirez@example.com",
     "billingAddress": "654 Pine St, Ogdenville, IL",
     "id": "I004",
-    "PIN": 4567,
+    "PIN": "4567",
     "hireDate": "2022-06-15",
     "terminal": "Terminal D"
   },
@@ -50,7 +50,7 @@
     "email": "isabella.lopez@example.com",
     "billingAddress": "987 Cedar St, North Haverbrook, IL",
     "id": "I005",
-    "PIN": 5678,
+    "PIN": "5678",
     "hireDate": "2021-01-30",
     "terminal": "Terminal E"
   }

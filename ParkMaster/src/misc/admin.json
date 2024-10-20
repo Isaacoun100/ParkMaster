@@ -6,7 +6,7 @@
     "email": "michael.johnson@example.com",
     "billingAddress": "321 Birch St, Springfield, IL",
     "id": "A001",
-    "PIN": 1111,
+    "PIN": "1111",
     "hireDate": "2020-05-15"
   },
   {
@@ -16,7 +16,7 @@
     "email": "sarah.williams@example.com",
     "billingAddress": "654 Pine St, Shelbyville, IL",
     "id": "A002",
-    "PIN": 2222,
+    "PIN": "2222",
     "hireDate": "2019-08-01"
   },
   {
@@ -26,7 +26,7 @@
     "email": "david.smith@example.com",
     "billingAddress": "987 Cedar St, Capital City, IL",
     "id": "A003",
-    "PIN": 3333,
+    "PIN": "3333",
     "hireDate": "2021-01-10"
   },
   {
@@ -36,7 +36,7 @@
     "email": "emily.brown@example.com",
     "billingAddress": "123 Oak St, Ogdenville, IL",
     "id": "A004",
-    "PIN": 4444,
+    "PIN": "4444",
     "hireDate": "2018-11-30"
   },
   {
@@ -46,7 +46,7 @@
     "email": "james.davis@example.com",
     "billingAddress": "456 Elm St, North Haverbrook, IL",
     "id": "A005",
-    "PIN": 5555,
+    "PIN": "5555",
     "hireDate": "2022-03-25"
   }
 ]

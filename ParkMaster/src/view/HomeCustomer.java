@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class HomeCustomer extends JFrame {
     private JTextField emailTextField;
@@ -16,6 +15,7 @@ public class HomeCustomer extends JFrame {
     private JButton signInButton;
     private JButton returnToHomeButton;
     private JPanel homeUserPanel;
+    private JButton signUpButton;
 
     public HomeCustomer() {
 
@@ -30,12 +30,9 @@ public class HomeCustomer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                System.out.println(passwordFieldText.getPassword());
-                System.out.println(emailTextField.getText());
-
                 try {
                     Customer customer = jsonParser.loginCustomer(
-                            Integer.parseInt((passwordFieldText.getText())),
+                            passwordFieldText.getText(),
                             emailTextField.getText()
                     );
 
@@ -67,6 +64,13 @@ public class HomeCustomer extends JFrame {
             }
         });
 
+        signUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new AddCustomer();
+            }
+        });
     }
 
 }

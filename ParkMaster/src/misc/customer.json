@@ -6,7 +6,7 @@
     "email": "john.doe@example.com",
     "billingAddress": "123 Main St, Springfield, IL",
     "id": "C001",
-    "PIN": 1234,
+    "PIN": "1234",
     "paymentMethod": {
       "cardNumber": "4111111111111111",
       "expiryDate": "12/25",
@@ -32,7 +32,7 @@
     "email": "jane.smith@example.com",
     "billingAddress": "456 Elm St, Shelbyville, IL",
     "id": "C002",
-    "PIN": 5678,
+    "PIN": "5678",
     "paymentMethod": {
       "cardNumber": "5500000000000004",
       "expiryDate": "11/24",
@@ -53,7 +53,7 @@
     "email": "alice.johnson@example.com",
     "billingAddress": "789 Oak St, Capital City, IL",
     "id": "C003",
-    "PIN": 9012,
+    "PIN": "9012",
     "paymentMethod": {
       "cardNumber": "340000000000009",
       "expiryDate": "01/26",
@@ -84,7 +84,7 @@
     "email": "bob.williams@example.com",
     "billingAddress": "101 Pine St, Ogdenville, IL",
     "id": "C004",
-    "PIN": 3456,
+    "PIN": "3456",
     "paymentMethod": {
       "cardNumber": "6011000000000004",
       "expiryDate": "03/27",
@@ -105,7 +105,7 @@
     "email": "charlie.brown@example.com",
     "billingAddress": "202 Maple St, North Haverbrook, IL",
     "id": "C005",
-    "PIN": 7890,
+    "PIN": "7890",
     "paymentMethod": {
       "cardNumber": "30000000000004",
       "expiryDate": "09/23",

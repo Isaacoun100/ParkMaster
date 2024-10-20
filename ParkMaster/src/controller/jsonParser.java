@@ -4,8 +4,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
+
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.other.*;
 import model.*;
@@ -14,23 +17,33 @@ import static java.lang.String.valueOf;
 
 public class jsonParser {
 
+    // This are the files that will be accessed
     static String customerFile = "src/misc/customer.json";
+    static String inspectorFile = "src/misc/inspector.json";
+    static String adminFile = "src/misc/admin.json";
 
-    public static Customer loginCustomer( int password, String email ) throws IOException, ParseException {
+    /**
+     * This method will receive a password and email and will look up in the file if the
+     * customer exists in the JSON file
+     * @param password The password from the client
+     * @param email The email the client used
+     * @return
+     * @throws IOException
+     * @throws ParseException
+     */
+    public static Customer loginCustomer( String password, String email ) throws IOException, ParseException {
 
-        System.out.println("Attempting to read filed");
         Object array = new JSONParser().parse(new FileReader(customerFile));
-        System.out.println("File read");
-        JSONArray newArray = (JSONArray) array;
+        JSONArray customerList = (JSONArray) array;
 
-        for(Object item : newArray) {
+        for(Object item : customerList) {
 
-            JSONObject jsonObject = (JSONObject) item;
+            JSONObject customer = (JSONObject) item;
 
-            if( valueOf(jsonObject.get("email")).equals(email) && Integer.parseInt(valueOf(jsonObject.get("PIN"))) == password ) {
+            if( valueOf(customer.get("email")).equals(email) && valueOf(customer.get("PIN")).equals(password) ) {
 
-                JSONObject paymentMethod = (JSONObject) jsonObject.get("paymentMethod");
-                JSONArray vehicles = (JSONArray) jsonObject.get("vehicles");
+                JSONObject paymentMethod = (JSONObject) customer.get("paymentMethod");
+                JSONArray vehicles = (JSONArray) customer.get("vehicles");
 
                 ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
@@ -46,12 +59,12 @@ public class jsonParser {
                 }
 
                 return new Customer(
-                        valueOf(jsonObject.get("name")),
-                        valueOf(jsonObject.get("lastName")),
-                        valueOf(jsonObject.get("phoneNumber")),
-                        valueOf(jsonObject.get("email")),
-                        valueOf(jsonObject.get("billingAddress")),
-                        valueOf(jsonObject.get("id")),
+                        valueOf(customer.get("name")),
+                        valueOf(customer.get("lastName")),
+                        valueOf(customer.get("phoneNumber")),
+                        email,
+                        valueOf(customer.get("billingAddress")),
+                        valueOf(customer.get("id")),
                         password,
                         new PaymentMethod(
                                 (String)paymentMethod.get("cardNumber"),
@@ -67,11 +80,63 @@ public class jsonParser {
         return null;
     }
 
-    public Admin loginAdmin( String password, String email ){
+
+    public static Admin loginAdmin( String password, String email ) throws IOException, ParseException {
+
+        Object array = new JSONParser().parse(new FileReader(adminFile));
+        JSONArray adminList = (JSONArray) array;
+
+        for(Object item : adminList) {
+
+            JSONObject admin = (JSONObject) item;
+
+            if( valueOf(admin.get("email")).equals(email) && valueOf(admin.get("PIN")).equals(password) ) {
+
+                return new Admin(
+                        valueOf(admin.get("name")),
+                        valueOf(admin.get("lastName")),
+                        valueOf(admin.get("phoneNumber")),
+                        email,
+                        valueOf(admin.get("billingAddress")),
+                        valueOf(admin.get("id")),
+                        password,
+                        LocalDate.parse(valueOf(admin.get("hireDate")))
+                );
+
+            }
+
+        }
+
         return null;
     }
 
-    public Inspector loginInspector( String password, String email ){
+    public static Inspector loginInspector( String password, String email ) throws IOException, ParseException {
+
+        Object array = new JSONParser().parse(new FileReader(inspectorFile));
+        JSONArray inspectorList = (JSONArray) array;
+
+        for(Object item : inspectorList) {
+
+            JSONObject inspector = (JSONObject) item;
+
+            if( valueOf(inspector.get("email")).equals(email) && valueOf(inspector.get("PIN")).equals(password) ) {
+
+                return new Inspector(
+                        valueOf(inspector.get("name")),
+                        valueOf(inspector.get("lastName")),
+                        valueOf(inspector.get("phoneNumber")),
+                        email,
+                        valueOf(inspector.get("billingAddress")),
+                        valueOf(inspector.get("id")),
+                        password,
+                        LocalDate.parse(valueOf(inspector.get("hireDate"))),
+                        valueOf(inspector.get("terminal"))
+                );
+
+            }
+
+        }
+
         return null;
     }
 

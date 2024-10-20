@@ -1,16 +1,20 @@
 package view;
 
+import controller.jsonParser;
+import model.Admin;
+import org.json.simple.parser.ParseException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class HomeAdmin extends JFrame {
-    private JPasswordField emailFieldText;
     private JButton logInButton;
-    private JPasswordField passwordFieldText;
+    private JPasswordField passwordTextField;
     private JButton returnToHomeButton;
     private JPanel homeAdminPanel;
-    private JButton signUpButton;
+    private JTextField emailTextField;
 
     public HomeAdmin() {
 
@@ -24,8 +28,29 @@ public class HomeAdmin extends JFrame {
         logInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new AdminDashboard();
+                try {
+                    Admin admin = jsonParser.loginAdmin(
+                            passwordTextField.getText(),
+                            emailTextField.getText()
+                    );
+
+                    if(admin != null){
+                        frame.setVisible(false);
+                        new AdminDashboard();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(frame, "Please check your password or email");
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println("IOException");
+                    System.out.println(ex.getMessage());
+                    throw new RuntimeException(ex);
+                } catch (ParseException ex) {
+                    System.out.println("Cannot find file");
+                    System.out.println(ex.getMessage());
+                    throw new RuntimeException(ex);
+                }
             }
         });
         returnToHomeButton.addActionListener(new ActionListener() {
@@ -33,13 +58,6 @@ public class HomeAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new HomePage();
-            }
-        });
-        signUpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new AddCustomer();
             }
         });
     }

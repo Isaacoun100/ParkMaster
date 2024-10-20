@@ -6,7 +6,7 @@ public class Admin extends User {
 
     private LocalDate hireDate;
 
-    public Admin(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, int PIN, LocalDate hireDate) {
+    public Admin(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, LocalDate hireDate) {
         super(name, lastName, phoneNumber, email, billingAddress, id, PIN);
         this.hireDate = hireDate;
     }
