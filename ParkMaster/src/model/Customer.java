@@ -1,7 +1,7 @@
 package model;
 
-import model.misc.PaymentMethod;
-import model.misc.Vehicle;
+import model.other.PaymentMethod;
+import model.other.Vehicle;
 
 import java.util.ArrayList;
 
