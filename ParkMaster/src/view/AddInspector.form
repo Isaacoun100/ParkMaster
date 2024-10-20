@@ -43,7 +43,7 @@
               <text value="Phone number"/>
             </properties>
           </component>
-          <component id="d4503" class="javax.swing.JTextField" binding="nameFieldText">
+          <component id="d4503" class="javax.swing.JTextField" binding="nameTextField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -51,7 +51,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="b4756" class="javax.swing.JTextField" binding="lastNameFieldText">
+          <component id="b4756" class="javax.swing.JTextField" binding="lastNameTextField">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -59,7 +59,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="72612" class="javax.swing.JFormattedTextField" binding="phoneNumberFieldText">
+          <component id="72612" class="javax.swing.JFormattedTextField" binding="phoneNumberTextField">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -103,7 +103,7 @@
               <text value="Hire date"/>
             </properties>
           </component>
-          <component id="d40ef" class="javax.swing.JTextField" binding="billingAddressFieldText">
+          <component id="d40ef" class="javax.swing.JTextField" binding="billingAddressTextField">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -111,7 +111,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="bfd05" class="javax.swing.JFormattedTextField" binding="hireDateFieldText">
+          <component id="bfd05" class="javax.swing.JFormattedTextField" binding="hireDateTextField">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -137,7 +137,7 @@
               <text value="Email"/>
             </properties>
           </component>
-          <component id="abf62" class="javax.swing.JTextField" binding="emailFieldText">
+          <component id="abf62" class="javax.swing.JTextField" binding="emailTextField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -155,7 +155,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="10e35" class="javax.swing.JFormattedTextField" binding="idFieldText">
+          <component id="10e35" class="javax.swing.JFormattedTextField" binding="idTextField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -179,7 +179,7 @@
               <text value="PIN"/>
             </properties>
           </component>
-          <component id="f0e18" class="javax.swing.JPasswordField" binding="pinFieldText">
+          <component id="f0e18" class="javax.swing.JPasswordField" binding="pinTextField">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -201,7 +201,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
           <hspacer id="eb5e4">
             <constraints>
