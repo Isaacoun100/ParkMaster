@@ -31,7 +31,7 @@ public class ScheduleParking extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new UserDashboard();
+                new CustomerDashboard();
             }
         });
     }

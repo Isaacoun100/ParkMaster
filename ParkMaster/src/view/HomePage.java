@@ -1,5 +1,6 @@
 package view;
 
+import model.Customer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +32,7 @@ public class HomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new HomeUser();
+                new HomeCustomer();
             }
         });
         manageInspectorButton.addActionListener(new ActionListener() {

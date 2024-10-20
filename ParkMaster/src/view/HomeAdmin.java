@@ -39,7 +39,7 @@ public class HomeAdmin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AddUser();
+                new AddCustomer();
             }
         });
     }
