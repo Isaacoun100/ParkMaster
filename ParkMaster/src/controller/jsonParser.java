@@ -170,7 +170,8 @@ public class jsonParser {
         paymentMethod.put("expiryDate", expirityDate);
         paymentMethod.put("cvv", ccv);
 
-        JSONArray vehicles = (JSONArray) array;
+        JSONArray vehicles = new JSONArray();
+
         for( Vehicle vehicle : vehicleList ) {
             JSONObject vehicleObj = new JSONObject();
             vehicleObj.put("vehicleID", valueOf(vehicle.getVehicleID()));
@@ -191,7 +192,7 @@ public class jsonParser {
         newCustomer.put("vehicles", vehicles);
         customerList.add(newCustomer);
 
-        PrintWriter pw = new PrintWriter(inspectorFile);
+        PrintWriter pw = new PrintWriter(customerFile);
         pw.write(customerList.toJSONString());
 
         pw.flush();
