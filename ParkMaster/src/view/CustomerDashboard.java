@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import model.Customer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +12,7 @@ public class CustomerDashboard extends JFrame {
     private JButton finishParkingButton;
     private JButton historyButton;
     private JButton signOutButton;
+    private JButton userProfileButton;
 
     public CustomerDashboard() {
 

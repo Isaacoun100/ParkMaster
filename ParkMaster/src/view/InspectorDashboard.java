@@ -9,6 +9,7 @@ public class InspectorDashboard extends JFrame {
     private JTextField textField1;
     private JButton checkLicenseButton;
     private JButton signOutButton;
+    private JButton myProfileButton;
 
     public InspectorDashboard() {
 
