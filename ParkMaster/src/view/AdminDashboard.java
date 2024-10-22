@@ -8,16 +8,11 @@ public class AdminDashboard extends JFrame {
     private JButton addANewAdminButton;
     private JButton addANewInspectorButton1;
     private JButton signOutButton;
-    private JTextField textField1;
-    private JTextField textField2;
     private JPanel adminDashboardPanel;
-    private JPasswordField passwordField1;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JButton saveChangesButton;
     private JButton manageParkingSpotsButton;
     private JButton reportsButton;
     private JButton parkConfiguationButton;
+    private JButton manageMyDataButton;
 
 
     public AdminDashboard() {
@@ -25,7 +20,7 @@ public class AdminDashboard extends JFrame {
         JFrame frame = new JFrame("Admin Dashboard");
         frame.setContentPane(adminDashboardPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900,600);
+        frame.setSize(750,500);
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -55,6 +50,13 @@ public class AdminDashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new HomeAdmin();
+            }
+        });
+        manageParkingSpotsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ManageParking();
             }
         });
     }
