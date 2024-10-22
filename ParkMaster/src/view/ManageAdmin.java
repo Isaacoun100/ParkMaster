@@ -1,10 +1,13 @@
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import model.Admin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class ManageAdmin {
     private JPanel manageAdminPanel;
@@ -14,9 +17,9 @@ public class ManageAdmin {
     private JTextField emailTextField;
     private JTextField billingAddressTextField;
     private JFormattedTextField idTextField;
-    private JTextField hireDateTextField;
     private JButton createAdmin;
     private JButton returnToPreviousMenuButton;
+    private JDateChooser dateChooser;
 
     public ManageAdmin( Admin admin ) {
 
@@ -34,8 +37,7 @@ public class ManageAdmin {
         emailTextField.setText( admin.getEmail() );
         billingAddressTextField.setText( admin.getBillingAddress() );
         idTextField.setText( admin.getId() );
-        hireDateTextField.setText(admin.getHireDate().toString());
-
+        dateChooser.setDate( Date.from(admin.getHireDate().atStartOfDay(ZoneId.systemDefault()).toInstant()) );
 
         returnToPreviousMenuButton.addActionListener(new ActionListener() {
             @Override
@@ -51,5 +53,14 @@ public class ManageAdmin {
 
             }
         });
+    }
+
+    private void createUIComponents() {
+        // Initialize the JDateChooser for the custom component
+        dateChooser = new JDateChooser();
+        Date currentDate = new Date();
+
+        dateChooser.setDate(currentDate);
+        dateChooser.setDateFormatString("yyyy-MM-dd");
     }
 }

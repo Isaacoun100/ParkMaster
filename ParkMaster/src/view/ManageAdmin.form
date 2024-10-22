@@ -154,13 +154,10 @@
               <text value="Hire date"/>
             </properties>
           </component>
-          <component id="57888" class="javax.swing.JTextField" binding="hireDateTextField">
+          <component id="4a688" class="com.toedter.calendar.JDateChooser" binding="dateChooser" custom-create="true">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
           </component>
         </children>
       </grid>

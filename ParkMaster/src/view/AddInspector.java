@@ -1,5 +1,6 @@
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import controller.JTool;
 import org.json.simple.parser.ParseException;
 
@@ -12,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class AddInspector extends JFrame {
 
@@ -26,9 +29,7 @@ public class AddInspector extends JFrame {
     private JButton createInspectorButton;
     private JButton returnToPreviousMenuButton;
     private JPanel addInspectorPanel;
-    private JTextField dayTextField;
-    private JTextField yearTextField;
-    private JTextField monthTextField;
+    private JDateChooser dateChooser;
 
     public AddInspector() {
 
@@ -47,11 +48,6 @@ public class AddInspector extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    LocalDate hireDate = LocalDate.of(
-                            Integer.parseInt(yearTextField.getText()),
-                            Integer.parseInt(monthTextField.getText()),
-                            Integer.parseInt(dayTextField.getText())
-                    );
 
                     JTool.addInspector(
                             nameTextField.getText(),
@@ -61,7 +57,7 @@ public class AddInspector extends JFrame {
                             billingAddressTextField.getText(),
                             idTextField.getText(),
                             new String(pinTextField.getPassword()),
-                            hireDate,
+                            LocalDate.parse( dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString() ),
                             terminalTextField.getText()
                     );
 
@@ -92,9 +88,6 @@ public class AddInspector extends JFrame {
         ((AbstractDocument) billingAddressTextField.getDocument()).setDocumentFilter(new LengthFilter(5, 60));
         ((AbstractDocument) idTextField.getDocument()).setDocumentFilter(new LengthFilter(2, 25));
         ((AbstractDocument) pinTextField.getDocument()).setDocumentFilter(new NumericFilter(4, 4));
-        ((AbstractDocument) yearTextField.getDocument()).setDocumentFilter(new NumericFilter(1, 4));
-        ((AbstractDocument) monthTextField.getDocument()).setDocumentFilter(new NumericFilter(2, 2));
-        ((AbstractDocument) dayTextField.getDocument()).setDocumentFilter(new NumericFilter(2, 2));
         ((AbstractDocument) terminalTextField.getDocument()).setDocumentFilter(new LengthFilter(6, 6));
     }
 
@@ -146,5 +139,14 @@ public class AddInspector extends JFrame {
                 super.replace(fb, offset, length, text, attrs);
             }
         }
+    }
+
+    private void createUIComponents() {
+        // Initialize the JDateChooser for the custom component
+        dateChooser = new JDateChooser();
+        Date currentDate = new Date();
+
+        dateChooser.setDate(currentDate);
+        dateChooser.setDateFormatString("yyyy-MM-dd");
     }
 }

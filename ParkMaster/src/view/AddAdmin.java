@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+import com.toedter.calendar.JDateChooser;
 
 public class AddAdmin extends JFrame {
     private JPanel addAdminPanel;
@@ -24,9 +28,7 @@ public class AddAdmin extends JFrame {
     private JFormattedTextField idTextField;
     private JButton createAdmin;
     private JButton returnToPreviousMenuButton;
-    private JTextField dayTextField;
-    private JTextField monthTextField;
-    private JTextField yearTextField;
+    private JDateChooser dateChooser;
 
     public AddAdmin() {
 
@@ -53,12 +55,6 @@ public class AddAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    // Create LocalDate using input from day, month, and year text fields
-                    LocalDate hireDate = LocalDate.of(
-                            Integer.parseInt(yearTextField.getText()),
-                            Integer.parseInt(monthTextField.getText()),
-                            Integer.parseInt(dayTextField.getText())
-                    );
 
                     JTool.addAdmin(
                             nameTextField.getText(),
@@ -68,7 +64,7 @@ public class AddAdmin extends JFrame {
                             billingAddressTextField.getText(),
                             idTextField.getText(),
                             new String(pinTextField.getPassword()),
-                            hireDate
+                            LocalDate.parse( dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString() )
                     );
                     JOptionPane.showMessageDialog(addAdminPanel, "Admin added successfully");
                 } catch (IOException | ParseException | NumberFormatException ex) {
@@ -89,9 +85,6 @@ public class AddAdmin extends JFrame {
         ((AbstractDocument) billingAddressTextField.getDocument()).setDocumentFilter(new LengthFilter(5, 60));
         ((AbstractDocument) idTextField.getDocument()).setDocumentFilter(new LengthFilter(2, 25));
         ((AbstractDocument) pinTextField.getDocument()).setDocumentFilter(new NumericFilter(4, 4));
-        ((AbstractDocument) yearTextField.getDocument()).setDocumentFilter(new NumericFilter(1, 4));
-        ((AbstractDocument) monthTextField.getDocument()).setDocumentFilter(new NumericFilter(2, 2));
-        ((AbstractDocument) dayTextField.getDocument()).setDocumentFilter(new NumericFilter(2, 2));
     }
 
     // Document filter for numeric input only with length restriction
@@ -143,4 +136,16 @@ public class AddAdmin extends JFrame {
             }
         }
     }
+
+    private void createUIComponents() {
+        // Initialize the JDateChooser for the custom component
+        dateChooser = new JDateChooser();
+
+        Date currentDate = new Date();
+        long currentTimeMillis = currentDate.getTime();
+
+        dateChooser.setDate(currentDate);
+        dateChooser.setDateFormatString("yyyy-MM-dd");
+    }
+
 }
