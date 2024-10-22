@@ -26,13 +26,13 @@ public class JTool {
      * This method will receive a password and email and will look up in the file if the
      * customer exists in the JSON file
      * @param password The password from the client
-     * @param email The email the client used
+     * @param id The email the client used
      * @return A Customer object that contains the customer information or a NULL if none
      * was found
      * @throws IOException If the file is not found
      * @throws ParseException If the file cannot be parsed
      */
-    public static Customer loginCustomer( String password, String email ) throws IOException, ParseException {
+    public static Customer loginCustomer( String password, String id ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(customerFile));
         JSONArray customerList = (JSONArray) array;
@@ -41,7 +41,7 @@ public class JTool {
 
             JSONObject customer = (JSONObject) item;
 
-            if( valueOf(customer.get("email")).equals(email) && valueOf(customer.get("PIN")).equals(password) ) {
+            if( valueOf(customer.get("id")).equals(id) && valueOf(customer.get("PIN")).equals(password) ) {
 
                 JSONObject paymentMethod = (JSONObject) customer.get("paymentMethod");
                 JSONArray vehicles = (JSONArray) customer.get("vehicles");
@@ -63,9 +63,9 @@ public class JTool {
                         valueOf(customer.get("name")),
                         valueOf(customer.get("lastName")),
                         valueOf(customer.get("phoneNumber")),
-                        email,
+                        valueOf(customer.get("email")),
                         valueOf(customer.get("billingAddress")),
-                        valueOf(customer.get("id")),
+                        id,
                         password,
                         new PaymentMethod(
                                 (String)paymentMethod.get("cardNumber"),

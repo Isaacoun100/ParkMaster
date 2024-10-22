@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class HomeCustomer extends JFrame {
-    private JTextField emailTextField;
+    private JTextField idTextField;
     private JPasswordField passwordFieldText;
     private JButton signInButton;
     private JButton returnToHomeButton;
@@ -33,7 +33,7 @@ public class HomeCustomer extends JFrame {
                 try {
                     Customer customer = JTool.loginCustomer(
                             passwordFieldText.getText(),
-                            emailTextField.getText()
+                            idTextField.getText()
                     );
 
                     if(customer != null){
@@ -41,7 +41,7 @@ public class HomeCustomer extends JFrame {
                         new CustomerDashboard();
                     }
                     else{
-                        JOptionPane.showMessageDialog(frame, "Please check your password or email");
+                        JOptionPane.showMessageDialog(frame, "Please check your username or email");
                     }
 
                 } catch (IOException ex) {
