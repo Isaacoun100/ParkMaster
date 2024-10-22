@@ -1,6 +1,8 @@
 package view;
 
 import controller.JTool;
+import model.Customer;
+import model.other.PaymentMethod;
 import model.other.Vehicle;
 import org.json.simple.parser.ParseException;
 
@@ -12,6 +14,7 @@ import javax.swing.text.DocumentFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AddCustomer extends JFrame {
@@ -56,7 +59,7 @@ public class AddCustomer extends JFrame {
                     System.out.println("I checked correctly");
 
                     try {
-                        JTool.addCustomer(
+                        JTool.addCustomer( new Customer(
                                 nameTextField.getText(),
                                 lastNameTextField.getText(),
                                 phoneNumberTextField.getText(),
@@ -64,11 +67,13 @@ public class AddCustomer extends JFrame {
                                 billingAddressTextField.getText(),
                                 idTextField.getText(),
                                 new String(pinTextField.getPassword()),
-                                cardNumberTextField.getText(),
-                                expDateTextField.getText(),
-                                cvvTextField.getText(),
-                                vehicles
-                        );
+                                new PaymentMethod(
+                                        cardNumberTextField.getText(),
+                                        expDateTextField.getText(),
+                                        cvvTextField.getText()),
+                                vehicles,
+                                LocalDate.now()
+                        ));
                         System.out.println("Account created successfully");
                         frame.dispose();
                         new HomeCustomer();

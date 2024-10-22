@@ -1,5 +1,7 @@
 package view;
 
+import model.Admin;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,7 @@ public class Reports extends JFrame {
     private JButton returnToDashboardButton1;
     private JPanel reportsForm;
 
-    public Reports() {
+    public Reports( Admin admin ) {
 
         JFrame frame = new JFrame("Reports");
         frame.setContentPane(reportsForm);
@@ -32,7 +34,7 @@ public class Reports extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AdminDashboard();
+                new AdminDashboard( admin );
             }
         });
     }

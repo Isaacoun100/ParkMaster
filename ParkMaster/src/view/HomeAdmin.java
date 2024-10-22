@@ -36,7 +36,7 @@ public class HomeAdmin extends JFrame {
 
                     if(admin != null){
                         frame.setVisible(false);
-                        new AdminDashboard();
+                        new AdminDashboard(admin);
                     }
                     else{
                         JOptionPane.showMessageDialog(frame, "Please check your password or username");

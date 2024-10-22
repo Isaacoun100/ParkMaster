@@ -1,6 +1,7 @@
 package view;
 
 import controller.JTool;
+import model.Admin;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class AddAdmin extends JFrame {
     private JButton returnToPreviousMenuButton;
     private JDateChooser dateChooser;
 
-    public AddAdmin() {
+    public AddAdmin( Admin admin ) {
 
         JFrame frame = new JFrame("Add Admin");
         frame.setContentPane(addAdminPanel);
@@ -46,7 +47,7 @@ public class AddAdmin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AdminDashboard();
+                new AdminDashboard( admin );
             }
         });
 
@@ -56,7 +57,7 @@ public class AddAdmin extends JFrame {
 
                 try {
 
-                    JTool.addAdmin(
+                    JTool.addAdmin( new Admin(
                             nameTextField.getText(),
                             lastNameTextField.getText(),
                             phoneNumberTextField.getText(),
@@ -65,7 +66,7 @@ public class AddAdmin extends JFrame {
                             idTextField.getText(),
                             new String(pinTextField.getPassword()),
                             LocalDate.parse( dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString() )
-                    );
+                    ));
                     JOptionPane.showMessageDialog(addAdminPanel, "Admin added successfully");
                 } catch (IOException | ParseException | NumberFormatException ex) {
                     JOptionPane.showMessageDialog(addAdminPanel, "Unable to add admin, please check the information");

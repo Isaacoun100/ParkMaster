@@ -1,5 +1,7 @@
 package view;
 
+import model.Admin;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +17,7 @@ public class AdminDashboard extends JFrame {
     private JButton manageMyDataButton;
 
 
-    public AdminDashboard() {
+    public AdminDashboard( Admin admin ) {
 
         JFrame frame = new JFrame("Admin Dashboard");
         frame.setContentPane(adminDashboardPanel);
@@ -28,21 +30,21 @@ public class AdminDashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AddAdmin();
+                new AddAdmin( admin );
             }
         });
         addANewInspectorButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AddInspector();
+                new AddInspector( admin );
             }
         });
         reportsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new Reports();
+                new Reports( admin );
             }
         });
         signOutButton.addActionListener(new ActionListener() {
@@ -56,7 +58,14 @@ public class AdminDashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new ManageParking();
+                new ManageParking( admin);
+            }
+        });
+        manageMyDataButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ManageAdmin( admin );
             }
         });
     }

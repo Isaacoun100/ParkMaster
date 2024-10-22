@@ -1,5 +1,7 @@
 package view;
 
+import model.Admin;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,7 @@ public class ManageParking {
     private JButton returnToDashboardButton;
     private JPanel manageParkingPanel;
 
-    public ManageParking() {
+    public ManageParking( Admin admin ) {
 
         JFrame frame = new JFrame("Manage Parking");
         frame.setContentPane(manageParkingPanel);
@@ -27,7 +29,7 @@ public class ManageParking {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AdminDashboard();
+                new AdminDashboard( admin );
             }
         });
         returnToDashboardButton.addActionListener(new ActionListener() {

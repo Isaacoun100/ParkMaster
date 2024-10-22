@@ -12,10 +12,11 @@ public class Customer extends User{
     private ArrayList<Vehicle> vehicles;
     private LocalDate signUpDate;
 
-    public Customer(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, PaymentMethod paymentMethod, ArrayList<Vehicle> vehicles) {
+    public Customer(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, PaymentMethod paymentMethod, ArrayList<Vehicle> vehicles, LocalDate signUpDate) {
         super(name, lastName, phoneNumber, email, billingAddress, id, PIN);
         this.paymentMethod = paymentMethod;
         this.vehicles = vehicles;
+        this.signUpDate = signUpDate;
     }
 
     public PaymentMethod getPaymentMethod() {

@@ -43,7 +43,7 @@ public class ManageAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AdminDashboard();
+                new AdminDashboard( admin );
             }
         });
 

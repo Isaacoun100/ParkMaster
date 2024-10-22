@@ -2,6 +2,8 @@ package view;
 
 import com.toedter.calendar.JDateChooser;
 import controller.JTool;
+import model.Admin;
+import model.Inspector;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
@@ -31,7 +33,7 @@ public class AddInspector extends JFrame {
     private JPanel addInspectorPanel;
     private JDateChooser dateChooser;
 
-    public AddInspector() {
+    public AddInspector( Admin admin ) {
 
         JFrame frame = new JFrame("Add Inspector");
         frame.setContentPane(addInspectorPanel);
@@ -49,7 +51,7 @@ public class AddInspector extends JFrame {
 
                 try {
 
-                    JTool.addInspector(
+                    JTool.addInspector( new Inspector(
                             nameTextField.getText(),
                             lastNameTextField.getText(),
                             phoneNumberTextField.getText(),
@@ -59,7 +61,7 @@ public class AddInspector extends JFrame {
                             new String(pinTextField.getPassword()),
                             LocalDate.parse( dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString() ),
                             terminalTextField.getText()
-                    );
+                    ));
 
                     JOptionPane.showMessageDialog(AddInspector.this, "Inspector added successfully");
 
@@ -75,7 +77,7 @@ public class AddInspector extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new AdminDashboard();
+                new AdminDashboard( admin );
             }
         });
     }
