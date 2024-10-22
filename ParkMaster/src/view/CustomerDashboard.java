@@ -37,6 +37,12 @@ public class CustomerDashboard extends JFrame {
                 new ScheduleParking();
             }
         });
+        userProfileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
 }

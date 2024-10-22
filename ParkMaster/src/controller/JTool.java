@@ -72,7 +72,8 @@ public class JTool {
                                 (String)paymentMethod.get("expiryDate"),
                                 (String)paymentMethod.get("cvv")
                         ),
-                        vehicleList
+                        vehicleList,
+                        LocalDate.parse(valueOf(customer.get("signUpDate")))
                 );
             }
 
@@ -160,19 +161,25 @@ public class JTool {
         return null;
     }
 
-    public static void addCustomer( String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, String cardNumber, String expirityDate, String ccv, ArrayList<Vehicle> vehicleList) throws IOException, ParseException {
+    /**
+     * This method adds the customer to the customer.json file where the customers are stored
+     * @param customer The new customer to add to the file
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void addCustomer( Customer customer) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(customerFile));
         JSONArray customerList = (JSONArray) array;
 
         JSONObject paymentMethod = new JSONObject();
-        paymentMethod.put("cardNumber", cardNumber);
-        paymentMethod.put("expiryDate", expirityDate);
-        paymentMethod.put("cvv", ccv);
+        paymentMethod.put("cardNumber", customer.getPaymentMethod().getCardNumber());
+        paymentMethod.put("expiryDate", customer.getPaymentMethod().getExpiryDate());
+        paymentMethod.put("cvv", customer.getPaymentMethod().getCvv());
 
         JSONArray vehicles = new JSONArray();
 
-        for( Vehicle vehicle : vehicleList ) {
+        for( Vehicle vehicle : customer.getVehicles() ) {
             JSONObject vehicleObj = new JSONObject();
             vehicleObj.put("vehicleID", valueOf(vehicle.getVehicleID()));
             vehicleObj.put("Brand", valueOf(vehicle.getBrand()));
@@ -181,15 +188,16 @@ public class JTool {
         }
 
         JSONObject newCustomer = new JSONObject();
-        newCustomer.put("name", name);
-        newCustomer.put("lastName", lastName);
-        newCustomer.put("phoneNumber", phoneNumber);
-        newCustomer.put("email", email);
-        newCustomer.put("billingAddress", billingAddress);
-        newCustomer.put("id", id);
-        newCustomer.put("PIN", PIN);
+        newCustomer.put("name", customer.getName());
+        newCustomer.put("lastName", customer.getLastName());
+        newCustomer.put("phoneNumber", customer.getPhoneNumber());
+        newCustomer.put("email", customer.getEmail());
+        newCustomer.put("billingAddress", customer.getBillingAddress());
+        newCustomer.put("id", customer.getId());
+        newCustomer.put("PIN", customer.getPIN());
         newCustomer.put("paymentMethod", paymentMethod);
         newCustomer.put("vehicles", vehicles);
+        newCustomer.put("signUpDate", valueOf(customer.getSignUpDate()));
         customerList.add(newCustomer);
 
         PrintWriter pw = new PrintWriter(customerFile);
@@ -200,20 +208,26 @@ public class JTool {
 
     }
 
-    public static void addAdmin(String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, LocalDate hireDate) throws IOException, ParseException {
+    /**
+     * This method adds the admin to the admin.json file where the admins are stored
+     * @param admin The new admin to add to the file
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void addAdmin( Admin admin ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(adminFile));
         JSONArray adminList = (JSONArray) array;
 
         JSONObject newAdmin = new JSONObject();
-        newAdmin.put("name", name);
-        newAdmin.put("lastName", lastName);
-        newAdmin.put("phoneNumber", phoneNumber);
-        newAdmin.put("email", email);
-        newAdmin.put("billingAddress", billingAddress);
-        newAdmin.put("id", id);
-        newAdmin.put("PIN", PIN);
-        newAdmin.put("hireDate", hireDate.toString());
+        newAdmin.put("name", admin.getName());
+        newAdmin.put("lastName", admin.getLastName());
+        newAdmin.put("phoneNumber", admin.getPhoneNumber());
+        newAdmin.put("email", admin.getEmail());
+        newAdmin.put("billingAddress", admin.getBillingAddress());
+        newAdmin.put("id", admin.getId());
+        newAdmin.put("PIN", admin.getPIN());
+        newAdmin.put("hireDate", valueOf(admin.getHireDate()));
         adminList.add(newAdmin);
 
         PrintWriter pw = new PrintWriter(adminFile);
@@ -223,21 +237,27 @@ public class JTool {
         pw.close();
     }
 
-    public static void addInspector( String name, String lastName, String phoneNumber, String email, String billingAddress, String id, String PIN, LocalDate hireDate, String terminalID) throws IOException, ParseException {
+    /**
+     * This method adds the admin to the inspector.json file where the inspectors are stored
+     * @param inspector The new inspector to add to the file
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void addInspector( Inspector inspector ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(inspectorFile));
         JSONArray inspectorList = (JSONArray) array;
 
         JSONObject newInspector = new JSONObject();
-        newInspector.put("name", name);
-        newInspector.put("lastName", lastName);
-        newInspector.put("phoneNumber", phoneNumber);
-        newInspector.put("email", email);
-        newInspector.put("billingAddress", billingAddress);
-        newInspector.put("id", id);
-        newInspector.put("PIN", PIN);
-        newInspector.put("hireDate", hireDate.toString());
-        newInspector.put("terminalID", terminalID);
+        newInspector.put("name", inspector.getName());
+        newInspector.put("lastName", inspector.getLastName());
+        newInspector.put("phoneNumber", inspector.getPhoneNumber());
+        newInspector.put("email", inspector.getEmail());
+        newInspector.put("billingAddress", inspector.getBillingAddress());
+        newInspector.put("id", inspector.getId());
+        newInspector.put("PIN", inspector.getPIN());
+        newInspector.put("hireDate", valueOf(inspector.getHireDate()));
+        newInspector.put("terminalID", inspector.getTerminal());
         inspectorList.add(newInspector);
 
         PrintWriter pw = new PrintWriter(inspectorFile);
@@ -246,6 +266,44 @@ public class JTool {
         pw.flush();
         pw.close();
 
+    }
+
+    /**
+     * It updates the information on the file to have the new admin
+     * @param admin The admin object to update
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void updateAdmin( Admin admin ) throws IOException, ParseException {
+        Object array = new JSONParser().parse(new FileReader(adminFile));
+        JSONArray adminList = (JSONArray) array;
+
+        for (int i = 0; i < adminList.size(); i++) {
+
+            JSONObject adminObj = (JSONObject) adminList.get(i);
+
+            if(adminObj.get("id").equals(admin.getId())) {
+                adminObj.put("name", admin.getName());
+                adminObj.put("lastName", admin.getLastName());
+                adminObj.put("phoneNumber", admin.getPhoneNumber());
+                adminObj.put("email", admin.getEmail());
+                adminObj.put("billingAddress", admin.getBillingAddress());
+                adminObj.put("id", admin.getId());
+                adminObj.put("PIN", admin.getPIN());
+                adminObj.put("hireDate", valueOf(admin.getHireDate()));
+
+                adminList.remove(i);
+                adminList.add(adminObj);
+                break;
+            }
+
+        }
+
+        PrintWriter pw = new PrintWriter(adminFile);
+        pw.write(adminList.toJSONString());
+
+        pw.flush();
+        pw.close();
     }
 
 }
