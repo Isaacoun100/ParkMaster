@@ -86,12 +86,12 @@ public class JTool {
      * This method will receive a password and email and will look up in the file if the
      * admin exists in the JSON file
      * @param password Admin password to check up
-     * @param email Email to check up
+     * @param username Username to check up
      * @return An Admin object with the admin information or a NULL if none was found
      * @throws IOException No file was found
      * @throws ParseException Unable to parse the file
      */
-    public static Admin loginAdmin( String password, String email ) throws IOException, ParseException {
+    public static Admin loginAdmin( String password, String username ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(adminFile));
         JSONArray adminList = (JSONArray) array;
@@ -100,15 +100,15 @@ public class JTool {
 
             JSONObject admin = (JSONObject) item;
 
-            if( valueOf(admin.get("email")).equals(email) && valueOf(admin.get("PIN")).equals(password) ) {
+            if( valueOf(admin.get("id")).equals(username) && valueOf(admin.get("PIN")).equals(password) ) {
 
                 return new Admin(
                         valueOf(admin.get("name")),
                         valueOf(admin.get("lastName")),
                         valueOf(admin.get("phoneNumber")),
-                        email,
+                        valueOf(admin.get("email")),
                         valueOf(admin.get("billingAddress")),
-                        valueOf(admin.get("id")),
+                        username,
                         password,
                         LocalDate.parse(valueOf(admin.get("hireDate")))
                 );

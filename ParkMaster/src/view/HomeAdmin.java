@@ -1,6 +1,6 @@
 package view;
 
-import controller.jsonParser;
+import controller.JTool;
 import model.Admin;
 import org.json.simple.parser.ParseException;
 
@@ -14,7 +14,7 @@ public class HomeAdmin extends JFrame {
     private JPasswordField passwordTextField;
     private JButton returnToHomeButton;
     private JPanel homeAdminPanel;
-    private JTextField emailTextField;
+    private JTextField idTextField;
 
     public HomeAdmin() {
 
@@ -29,9 +29,9 @@ public class HomeAdmin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Admin admin = jsonParser.loginAdmin(
+                    Admin admin = JTool.loginAdmin(
                             passwordTextField.getText(),
-                            emailTextField.getText()
+                            idTextField.getText()
                     );
 
                     if(admin != null){
@@ -39,7 +39,7 @@ public class HomeAdmin extends JFrame {
                         new AdminDashboard();
                     }
                     else{
-                        JOptionPane.showMessageDialog(frame, "Please check your password or email");
+                        JOptionPane.showMessageDialog(frame, "Please check your password or username");
                     }
 
                 } catch (IOException ex) {
