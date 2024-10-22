@@ -15,7 +15,7 @@ import model.*;
 
 import static java.lang.String.valueOf;
 
-public class jsonParser {
+public class JTool {
 
     // These are the files that will be accessed
     static String customerFile = "src/misc/customer.json";
