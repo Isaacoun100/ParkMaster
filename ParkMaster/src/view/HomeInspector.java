@@ -14,7 +14,7 @@ public class HomeInspector extends JFrame {
     private JPasswordField passwordTextField;
     private JButton returnToHomeButton;
     private JPanel homeInspectorPanel;
-    private JTextField emailTextField;
+    private JTextField idTextField;
 
     public HomeInspector() {
 
@@ -31,7 +31,7 @@ public class HomeInspector extends JFrame {
                 try {
                     Inspector inspector = JTool.loginInspector(
                             passwordTextField.getText(),
-                            emailTextField.getText()
+                            idTextField.getText()
                     );
 
                     if(inspector != null){
@@ -39,7 +39,7 @@ public class HomeInspector extends JFrame {
                         new InspectorDashboard();
                     }
                     else{
-                        JOptionPane.showMessageDialog(frame, "Please check your password or email");
+                        JOptionPane.showMessageDialog(frame, "Please check your username or email");
                     }
 
                 } catch (IOException ex) {

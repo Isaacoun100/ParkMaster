@@ -86,12 +86,12 @@ public class JTool {
      * This method will receive a password and email and will look up in the file if the
      * admin exists in the JSON file
      * @param password Admin password to check up
-     * @param username Username to check up
+     * @param id Username to check up
      * @return An Admin object with the admin information or a NULL if none was found
      * @throws IOException No file was found
      * @throws ParseException Unable to parse the file
      */
-    public static Admin loginAdmin( String password, String username ) throws IOException, ParseException {
+    public static Admin loginAdmin( String password, String id ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(adminFile));
         JSONArray adminList = (JSONArray) array;
@@ -100,7 +100,7 @@ public class JTool {
 
             JSONObject admin = (JSONObject) item;
 
-            if( valueOf(admin.get("id")).equals(username) && valueOf(admin.get("PIN")).equals(password) ) {
+            if( valueOf(admin.get("id")).equals(id) && valueOf(admin.get("PIN")).equals(password) ) {
 
                 return new Admin(
                         valueOf(admin.get("name")),
@@ -108,7 +108,7 @@ public class JTool {
                         valueOf(admin.get("phoneNumber")),
                         valueOf(admin.get("email")),
                         valueOf(admin.get("billingAddress")),
-                        username,
+                        id,
                         password,
                         LocalDate.parse(valueOf(admin.get("hireDate")))
                 );
@@ -124,13 +124,13 @@ public class JTool {
      * This method will receive a password and email and will look up in the file if the
      * inspector exists in the JSON file
      * @param password The inspector password
-     * @param email The inspector email
+     * @param id The inspector email
      * @return An Inspector object that contains the user information or a NULL if
      * none was found
      * @throws IOException If the file was not found
      * @throws ParseException If the file could not be parsed
      */
-    public static Inspector loginInspector( String password, String email ) throws IOException, ParseException {
+    public static Inspector loginInspector( String password, String id ) throws IOException, ParseException {
 
         Object array = new JSONParser().parse(new FileReader(inspectorFile));
         JSONArray inspectorList = (JSONArray) array;
@@ -139,15 +139,15 @@ public class JTool {
 
             JSONObject inspector = (JSONObject) item;
 
-            if( valueOf(inspector.get("email")).equals(email) && valueOf(inspector.get("PIN")).equals(password) ) {
+            if( valueOf(inspector.get("id")).equals(id) && valueOf(inspector.get("PIN")).equals(password) ) {
 
                 return new Inspector(
                         valueOf(inspector.get("name")),
                         valueOf(inspector.get("lastName")),
                         valueOf(inspector.get("phoneNumber")),
-                        email,
+                        valueOf(inspector.get("email")),
                         valueOf(inspector.get("billingAddress")),
-                        valueOf(inspector.get("id")),
+                        id,
                         password,
                         LocalDate.parse(valueOf(inspector.get("hireDate"))),
                         valueOf(inspector.get("terminal"))
