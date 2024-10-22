@@ -1,7 +1,7 @@
 package view;
 
 import model.Customer;
-import controller.jsonParser;
+import controller.JTool;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class HomeCustomer extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    Customer customer = jsonParser.loginCustomer(
+                    Customer customer = JTool.loginCustomer(
                             passwordFieldText.getText(),
                             emailTextField.getText()
                     );

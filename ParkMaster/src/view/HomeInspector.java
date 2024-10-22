@@ -1,7 +1,6 @@
 package view;
 
-import controller.jsonParser;
-import model.Admin;
+import controller.JTool;
 import model.Inspector;
 import org.json.simple.parser.ParseException;
 
@@ -30,7 +29,7 @@ public class HomeInspector extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Inspector inspector = jsonParser.loginInspector(
+                    Inspector inspector = JTool.loginInspector(
                             passwordTextField.getText(),
                             emailTextField.getText()
                     );

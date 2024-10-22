@@ -1,6 +1,6 @@
 package view;
 
-import controller.jsonParser;
+import controller.JTool;
 import model.other.Vehicle;
 import org.json.simple.parser.ParseException;
 
@@ -56,7 +56,7 @@ public class AddCustomer extends JFrame {
                     System.out.println("I checked correctly");
 
                     try {
-                        jsonParser.addCustomer(
+                        JTool.addCustomer(
                                 nameTextField.getText(),
                                 lastNameTextField.getText(),
                                 phoneNumberTextField.getText(),

@@ -1,6 +1,6 @@
 package view;
 
-import controller.jsonParser;
+import controller.JTool;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
@@ -60,7 +60,7 @@ public class AddAdmin extends JFrame {
                             Integer.parseInt(dayTextField.getText())
                     );
 
-                    jsonParser.addAdmin(
+                    JTool.addAdmin(
                             nameTextField.getText(),
                             lastNameTextField.getText(),
                             phoneNumberTextField.getText(),

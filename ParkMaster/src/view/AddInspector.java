@@ -1,6 +1,6 @@
 package view;
 
-import controller.jsonParser;
+import controller.JTool;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
@@ -53,7 +53,7 @@ public class AddInspector extends JFrame {
                             Integer.parseInt(dayTextField.getText())
                     );
 
-                    jsonParser.addInspector(
+                    JTool.addInspector(
                             nameTextField.getText(),
                             lastNameTextField.getText(),
                             phoneNumberTextField.getText(),
