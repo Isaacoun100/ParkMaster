@@ -429,12 +429,15 @@ public class JTool {
 
         settingsObj.put("fromTime", valueOf(settings.getFromTime()));
         settingsObj.put("toTime", valueOf(settings.getToTime()));
-        settingsObj.put("price", valueOf(settings.getPrice()));
-        settingsObj.put("minimumTime", valueOf(settings.getMinimumTime()));
-        settingsObj.put("ticketPrice", valueOf(settings.getTicketPrice()));
+        settingsObj.put("price", settings.getPrice());
+        settingsObj.put("minimumTime", settings.getMinimumTime());
+        settingsObj.put("ticketPrice", settings.getTicketPrice());
 
         PrintWriter pw = new PrintWriter(settingsFile);
         pw.write(settingsObj.toJSONString());
+
+        pw.flush();
+        pw.close();
     }
 
 }

@@ -24,7 +24,7 @@
               <text value="Parking hours: from "/>
             </properties>
           </component>
-          <component id="635c5" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="635c5" class="javax.swing.JTextField" binding="fromTextField">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -40,7 +40,7 @@
               <text value="to"/>
             </properties>
           </component>
-          <component id="86819" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+          <component id="86819" class="javax.swing.JTextField" binding="toTextField">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -66,7 +66,7 @@
               <text value="Parking price"/>
             </properties>
           </component>
-          <component id="42a65" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="42a65" class="javax.swing.JTextField" binding="parkingPriceTextField">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -82,14 +82,6 @@
               <text value="Ticket price"/>
             </properties>
           </component>
-          <component id="77666" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
           <component id="9cab1" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -98,7 +90,7 @@
               <text value="Minimum time"/>
             </properties>
           </component>
-          <component id="a4c20" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="a4c20" class="javax.swing.JTextField" binding="minimumTimeTextField">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -121,6 +113,14 @@
             <properties>
               <text value="Return to dashboard"/>
             </properties>
+          </component>
+          <component id="c5d3c" class="javax.swing.JTextField" binding="ticketPriceTextField">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
           </component>
         </children>
       </grid>
