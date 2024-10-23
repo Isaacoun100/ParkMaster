@@ -143,7 +143,6 @@ public class AddAdmin extends JFrame {
         dateChooser = new JDateChooser();
 
         Date currentDate = new Date();
-        long currentTimeMillis = currentDate.getTime();
 
         dateChooser.setDate(currentDate);
         dateChooser.setDateFormatString("yyyy-MM-dd");
