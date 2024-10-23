@@ -2,49 +2,45 @@ package view;
 
 import controller.JTool;
 import model.Admin;
-import model.other.Settings;
 import org.json.simple.parser.ParseException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import static java.lang.String.valueOf;
 
 public class ManageParking {
+    private JPanel manageParkingField;
+    private JComboBox operationComboBox;
+    private JButton returnToDashboardButton;
+    private JButton manageParkingSpot;
     private JTextField fromTextField;
     private JTextField toTextField;
-    private JTextField parkingPriceTextField;
-    private JTextField minimumTimeTextField;
-    private JButton saveChangesButton;
-    private JButton returnToDashboardButton;
-    private JPanel manageParkingPanel;
-    private JTextField ticketPriceTextField;
 
     public ManageParking( Admin admin ) {
 
         JFrame frame = new JFrame("Manage Parking");
-        frame.setContentPane(manageParkingPanel);
+        frame.setContentPane(manageParkingField);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750,500);
         frame.setResizable(false);
         frame.setVisible(true);
 
-        try {
-            Settings settings = JTool.getSettings();
-            fromTextField.setText( valueOf(settings.getFromTime()) );
-            toTextField.setText( valueOf(settings.getToTime()) );
-            parkingPriceTextField.setText( valueOf(settings.getPrice()) );
-            minimumTimeTextField.setText( valueOf(settings.getMinimumTime()) );
-            ticketPriceTextField.setText( valueOf(settings.getTicketPrice()) );
-        } 
-        catch (IOException | ParseException e) {
-            throw new RuntimeException(e);
-        }
+        operationComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                fromTextField.setText("");
+                toTextField.setText("");
+
+                if(operationComboBox.getSelectedIndex()==0){
+                    manageParkingSpot.setText("Add Parking Spots");
+                }
+                else if(operationComboBox.getSelectedIndex()==1){
+                    manageParkingSpot.setText("Delete Parking Spots");
+                }
+            }
+        });
         returnToDashboardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,39 +48,38 @@ public class ManageParking {
                 new AdminDashboard( admin );
             }
         });
-
-        saveChangesButton.addActionListener(new ActionListener() {
+        manageParkingSpot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                if(operationComboBox.getSelectedIndex()==0){
 
-                try{
-                    Settings newSettings = new Settings(
-                            LocalTime.parse( fromTextField.getText(), formatter ),
-                            LocalTime.parse( toTextField.getText(), formatter ),
-                            Integer.parseInt( parkingPriceTextField.getText() ),
-                            Integer.parseInt( minimumTimeTextField.getText() ),
-                            Integer.parseInt( ticketPriceTextField.getText() )
-                    );
+                    try {
 
-                    JTool.setSettings(newSettings);
-                    JOptionPane.showMessageDialog(frame, "Preferences saved successfully");
-                    frame.dispose();
-                    new AdminDashboard( admin );
+                        JTool.addParkingSpots( Integer.parseInt(fromTextField.getText()), Integer.parseInt(toTextField.getText()) );
+                        JOptionPane.showMessageDialog(frame, "Parking Spot Added");
+
+                    } catch (IOException | ParseException ex) {
+                        JOptionPane.showMessageDialog(frame, "Unable to add parking spots");
+                        throw new RuntimeException(ex);
+                    }
 
                 }
-                catch (NumberFormatException ex){
-                    JOptionPane.showMessageDialog(frame, "There is an issue with the information");
-                    throw new RuntimeException(ex);
-                } catch (IOException | ParseException ex) {
-                    JOptionPane.showMessageDialog(frame, "There is an issue with the file system, please try again later");
-                    throw new RuntimeException(ex);
-                }
+                else if(operationComboBox.getSelectedIndex()==1){
 
+                    try {
+
+                        JTool.deleteParkingSpots( Integer.parseInt(fromTextField.getText()), Integer.parseInt(toTextField.getText()) );
+                        JOptionPane.showMessageDialog(frame, "Parking Spot Added");
+
+                    } catch (IOException | ParseException ex) {
+                        JOptionPane.showMessageDialog(frame, "Unable to delete parking spots");
+                        throw new RuntimeException(ex);
+                    }
+
+                }
 
             }
         });
     }
-    
 }

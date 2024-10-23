@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +24,7 @@ public class JTool {
     static String inspectorFile = "src/misc/inspector.json";
     static String adminFile = "src/misc/admin.json";
     static String settingsFile = "src/misc/settings.json";
+    static String parkingSpots = "src/misc/parkingSpots.json";
 
     /**
      * This method will receive a password and email and will look up in the file if the
@@ -423,6 +425,12 @@ public class JTool {
         );
     }
 
+    /**
+     * Receives a settings object and assigns its values to the settings.json file
+     * @param settings The class with the info to change
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
     public static void setSettings(Settings settings) throws IOException, ParseException {
         Object object = new JSONParser().parse(new FileReader(settingsFile));
         JSONObject settingsObj = (JSONObject) object;
@@ -438,6 +446,55 @@ public class JTool {
 
         pw.flush();
         pw.close();
+    }
+
+    public static void addParkingSpots(int from, int to) throws IOException, ParseException {
+
+        Object array = new JSONParser().parse(new FileReader(parkingSpots));
+        JSONArray parkingList = (JSONArray) array;
+
+        while( from <= to){
+
+            JSONObject parkingObj = new JSONObject();
+            parkingObj.put("ID", valueOf(from));
+            parkingObj.put("scheduledBy", "0");
+            parkingObj.put("earnings", 0);
+            parkingObj.put("tickets", 0);
+            parkingList.add(parkingObj);
+            from++;
+        }
+
+        PrintWriter pw = new PrintWriter(parkingSpots);
+        pw.write(parkingList.toJSONString());
+
+        pw.flush();
+        pw.close();
+
+    }
+
+    public static void deleteParkingSpots(int from, int to) throws IOException, ParseException {
+
+        Object array = new JSONParser().parse(new FileReader(parkingSpots));
+        JSONArray parkingList = (JSONArray) array;
+
+        int counter = 0;
+
+        while(counter<parkingList.size()){
+            JSONObject parkingObj = (JSONObject) parkingList.get(counter);
+
+            if(from <= Integer.parseInt(valueOf(parkingObj.get("ID"))) && Integer.parseInt(valueOf(parkingObj.get("ID"))) <= to)
+                parkingList.remove(counter);
+            else
+                counter++;
+
+        }
+
+        PrintWriter pw = new PrintWriter(parkingSpots);
+        pw.write(parkingList.toJSONString());
+
+        pw.flush();
+        pw.close();
+
     }
 
 }

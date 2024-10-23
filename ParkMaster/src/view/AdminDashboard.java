@@ -58,7 +58,7 @@ public class AdminDashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new ManageParking( admin);
+                new ManagePrices( admin);
             }
         });
         manageMyDataButton.addActionListener(new ActionListener() {
@@ -66,6 +66,13 @@ public class AdminDashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new ManageAdmin( admin );
+            }
+        });
+        parkConfiguationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ManageParking( admin );
             }
         });
     }
