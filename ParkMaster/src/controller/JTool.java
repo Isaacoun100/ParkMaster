@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import model.other.*;
 import model.*;
@@ -21,6 +22,7 @@ public class JTool {
     static String customerFile = "src/misc/customer.json";
     static String inspectorFile = "src/misc/inspector.json";
     static String adminFile = "src/misc/admin.json";
+    static String settingsFile = "src/misc/settings.json";
 
     /**
      * This method will receive a password and email and will look up in the file if the
@@ -269,7 +271,7 @@ public class JTool {
     }
 
     /**
-     * It updates the information on the file to have the new admin
+     * It updates the information on the file to update the customer
      * @param admin The admin object to update
      * @throws IOException If the file was not found
      * @throws ParseException If there is an error with the parsing
@@ -304,6 +306,135 @@ public class JTool {
 
         pw.flush();
         pw.close();
+    }
+
+    /**
+     * It updates the information on the file to update the customer
+     * @param customer The customer object to update
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void updateCustomer( Customer customer ) throws IOException, ParseException {
+        Object array = new JSONParser().parse(new FileReader(customerFile));
+        JSONArray customerList = (JSONArray) array;
+
+        for (int i = 0; i < customerList.size(); i++) {
+
+            JSONObject adminObj = (JSONObject) customerList.get(i);
+
+            if(adminObj.get("id").equals(customer.getId())) {
+                adminObj.put("name", customer.getName());
+                adminObj.put("lastName", customer.getLastName());
+                adminObj.put("phoneNumber", customer.getPhoneNumber());
+                adminObj.put("email", customer.getEmail());
+                adminObj.put("billingAddress", customer.getBillingAddress());
+                adminObj.put("id", customer.getId());
+                adminObj.put("PIN", customer.getPIN());
+                adminObj.put("signUpDate", valueOf(adminObj.get("signUpDate")));
+
+                JSONObject paymentMethodObj = new JSONObject();
+                paymentMethodObj.put("cardNumber", customer.getPaymentMethod().getCardNumber());
+                paymentMethodObj.put("expiryDate", customer.getPaymentMethod().getExpiryDate());
+                paymentMethodObj.put("cvv", customer.getPaymentMethod().getCvv());
+
+                JSONArray vehicleList =  new JSONArray();
+
+                for( Vehicle vehicle : customer.getVehicles()){
+                    JSONObject vehicleObj = new JSONObject();
+                    vehicleObj.put("Brand", vehicle.getBrand());
+                    vehicleObj.put("Model", vehicle.getModel());
+                    vehicleObj.put("vehicleID", vehicle.getVehicleID());
+                    vehicleList.add(vehicleObj);
+                }
+
+                adminObj.put("vehicles", vehicleList);
+                customerList.remove(i);
+                customerList.add(adminObj);
+                break;
+            }
+
+        }
+
+        PrintWriter pw = new PrintWriter(customerFile);
+        pw.write(customerList.toJSONString());
+
+        pw.flush();
+        pw.close();
+
+    }
+
+    /**
+     * It updates the information on the file to update the inspector
+     * @param inspector The inspector object to update
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static void updateInspector( Inspector inspector) throws IOException, ParseException {
+        Object array = new JSONParser().parse(new FileReader(inspectorFile));
+        JSONArray inspectorList = (JSONArray) array;
+
+        for (int i = 0; i < inspectorList.size(); i++) {
+
+            JSONObject inspectorObj = (JSONObject) inspectorList.get(i);
+
+            if(inspectorObj.get("id").equals(inspector.getId())) {
+                inspectorObj.put("name", inspector.getName());
+                inspectorObj.put("lastName", inspector.getLastName());
+                inspectorObj.put("phoneNumber", inspector.getPhoneNumber());
+                inspectorObj.put("email", inspector.getEmail());
+                inspectorObj.put("billingAddress", inspector.getBillingAddress());
+                inspectorObj.put("id", inspector.getId());
+                inspectorObj.put("PIN", inspector.getPIN());
+                inspectorObj.put("hireDate", valueOf(inspector.getHireDate()));
+                inspectorObj.put("terminalID", inspector.getTerminal());
+
+                inspectorList.remove(i);
+                inspectorList.add(inspectorObj);
+                break;
+            }
+
+        }
+
+        PrintWriter pw = new PrintWriter(inspectorFile);
+        pw.write(inspectorList.toJSONString());
+
+        pw.flush();
+        pw.close();
+
+    }
+
+    /**
+     * Returns the settings for the Park Master program
+     * @return A Settings file with all the information to set up the system
+     * @throws IOException If the file was not found
+     * @throws ParseException If there is an error with the parsing
+     */
+    public static Settings getSettings() throws IOException, ParseException {
+
+        Object object = new JSONParser().parse(new FileReader(settingsFile));
+        JSONObject settingsObj = (JSONObject) object;
+
+        return new Settings(
+                LocalTime.parse( valueOf(settingsObj.get("fromTime"))),
+                LocalTime.parse( valueOf(settingsObj.get("toTime"))),
+                Integer.parseInt(valueOf(settingsObj.get("price"))),
+                Integer.parseInt(valueOf(settingsObj.get("minimumTime"))),
+                Integer.parseInt(valueOf(settingsObj.get("ticketPrice")))
+        );
+    }
+
+    public static void setSettings(Settings settings) throws IOException, ParseException {
+        Object object = new JSONParser().parse(new FileReader(settingsFile));
+        JSONObject settingsObj = (JSONObject) object;
+
+        settingsObj.put("fromTime", valueOf(settings.getFromTime()));
+        settingsObj.put("toTime", valueOf(settings.getToTime()));
+        settingsObj.put("price", valueOf(settings.getPrice()));
+        settingsObj.put("minimumTime", valueOf(settings.getMinimumTime()));
+        settingsObj.put("ticketPrice", valueOf(settings.getTicketPrice()));
+
+        PrintWriter pw = new PrintWriter(settingsFile);
+        pw.write(settingsObj.toJSONString());
     }
 
 }
