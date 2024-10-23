@@ -38,7 +38,7 @@ public class HomeCustomer extends JFrame {
 
                     if(customer != null){
                         frame.setVisible(false);
-                        new CustomerDashboard();
+                        new CustomerDashboard( customer );
                     }
                     else{
                         JOptionPane.showMessageDialog(frame, "Please check your username or email");

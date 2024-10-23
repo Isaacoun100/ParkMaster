@@ -1,5 +1,7 @@
 package view;
 
+import model.Customer;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,7 @@ public class CustomerDashboard extends JFrame {
     private JButton signOutButton;
     private JButton userProfileButton;
 
-    public CustomerDashboard() {
+    public CustomerDashboard( Customer customer ) {
 
         JFrame frame = new JFrame("Add Admin");
         frame.setContentPane(userDashboardForm);
@@ -34,13 +36,14 @@ public class CustomerDashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new ScheduleParking();
+                new ScheduleParking( customer );
             }
         });
         userProfileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new ManageCustomer( customer );
             }
         });
     }

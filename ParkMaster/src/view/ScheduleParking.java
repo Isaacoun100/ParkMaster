@@ -1,5 +1,7 @@
 package view;
 
+import model.Customer;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +14,7 @@ public class ScheduleParking extends JFrame {
     private JButton returnButton;
     private JPanel scheduleParkingPanel;
 
-    public ScheduleParking() {
+    public ScheduleParking(Customer customer) {
 
         JFrame frame = new JFrame("Schedule Parking");
         frame.setContentPane(scheduleParkingPanel);
@@ -31,7 +33,7 @@ public class ScheduleParking extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new CustomerDashboard();
+                new CustomerDashboard( customer );
             }
         });
     }
