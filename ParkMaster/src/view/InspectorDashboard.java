@@ -1,5 +1,7 @@
 package view;
 
+import model.Inspector;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +13,7 @@ public class InspectorDashboard extends JFrame {
     private JButton signOutButton;
     private JButton myProfileButton;
 
-    public InspectorDashboard() {
+    public InspectorDashboard( Inspector inspector ) {
 
         JFrame frame = new JFrame("Inspector Dashboard");
         frame.setContentPane(inspectorDashboardPanel);
@@ -31,6 +33,13 @@ public class InspectorDashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new HomeInspector();
+            }
+        });
+        myProfileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new ManageInspector( inspector );
             }
         });
     }

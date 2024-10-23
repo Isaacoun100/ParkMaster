@@ -36,7 +36,7 @@ public class HomeInspector extends JFrame {
 
                     if(inspector != null){
                         frame.setVisible(false);
-                        new InspectorDashboard();
+                        new InspectorDashboard( inspector );
                     }
                     else{
                         JOptionPane.showMessageDialog(frame, "Please check your username or email");
